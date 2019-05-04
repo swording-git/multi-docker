@@ -13,7 +13,7 @@ after_success:
   - docker build -t swording/multi-nginx ./nginx
   - docker build -t swording/multi-server ./server
   - docker build -t swording/multi-worker ./worker
-  - ./deploy.sh
+  #- ./deploy.sh
   # Log in to docker cli
   #- echo "$DOCKER_PASS" | docker login -u "$DOCKER_ID" --password-stdin
   # Push images to docker hub
@@ -21,3 +21,9 @@ after_success:
   #- docker push swording/multi-nginx
   #- docker push swording/multi-server
   #- docker push swording/multi-worker
+deploy:
+  provider: script
+  script: docker login -u $DOCKER_ID -p $DOCKER_PASS
+  on:
+    branch: master
+  
