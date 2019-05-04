@@ -14,7 +14,8 @@ after_success:
   - docker build -t swording/multi-server ./server
   - docker build -t swording/multi-worker ./worker
   # Log in to docker cli
-  - echo "$DOCKER_PASS" | docker login -u "$DOCKER_ID" --password-stdin
+  #- echo "$DOCKER_PASS" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker login -u "$DOCKER_ID" -p "$DOCKER_PASS"  
   # Push images to docker hub
   - docker push swording/multi-client
   - docker push swording/multi-nginx
