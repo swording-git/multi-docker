@@ -2,17 +2,7 @@ sudo: required
 services:
   - docker
 
-before_install:
-  - docker build -t swording/react-test -f ./client/Dockerfile.dev ./client
- 
-script:
-  - docker run swording/react-test npm test -- --coverage
-  
-after_success:
-  - docker build -t swording/multi-client ./client
-  - docker build -t swording/multi-nginx ./nginx
-  - docker build -t swording/multi-server ./server
-  - docker build -t swording/multi-worker ./worker
+
   #- ./deploy.sh
   # Log in to docker cli
   #- echo "$DOCKER_PASS" | docker login -u "$DOCKER_ID" --password-stdin
@@ -23,7 +13,7 @@ after_success:
   #- docker push swording/multi-worker
 deploy:
   provider: script
-  script: docker login -u "$DOCKER_ID" -p "$DOCKER_PASS"
+  script: echo "$DOCKER_PASS" | docker login -u "$DOCKER_ID" --password-stdin
   on:
     branch: master
   
