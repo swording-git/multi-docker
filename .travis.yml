@@ -23,7 +23,7 @@ after_success:
   #- docker push swording/multi-worker
 deploy:
   provider: script
-  script: docker login -u $DOCKER_ID -p $DOCKER_PASS
+  script: docker login -u "$DOCKER_ID" -p "$DOCKER_PASS"
   on:
     branch: master
   
