@@ -16,7 +16,7 @@ after_success:
   #- ./deploy.sh
   # Log in to docker cli
   #- echo "$DOCKER_PASS" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker login -username "swording" --password "$DOCKER_PASS"
+  - docker login -username "swording" --password "password"
   # Push images to docker hub
   #- docker push swording/multi-client
   #- docker push swording/multi-nginx
